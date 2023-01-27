@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "python": "${command:python.interpreterPath}",
+            "args": [
+                "--interface", "eth0",
+                "--victim-ip", "10.0.0.5",
+                "--victim-ethernet", "31:16:A9:63:FF:83",
+                "--reflector-ip", "192.168.1.20",
+                "--reflector-ethernet", "38:45:E3:89:B5:56"
+            ],           
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
