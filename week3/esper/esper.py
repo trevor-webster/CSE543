@@ -35,6 +35,18 @@ def lrot(n, d):
 def rrot(n, d):
     return ((n >> d) ) | ((n << (8 - d)& 0xff))
 
+def decrypt(ciphertext, key, keyrotate):
+    ciphertext = bytes(ciphertext)
+    plaintext2 = []    
+    keyxor2 = []
+    for i in range(0,len(key)):
+        keyxor2.append(ord(key[i]))
+
+    for i in range(0, len(ciphertext)):
+        plaintext2.append(rrot((ciphertext[i] ^ keyxor2[i % len(keyxor2)]), keyrotate))
+    print(f"Decryption {bytes(plaintext2)}")
+    return plaintext2
+
 if encrypting:
     #
     # Esper cipher
@@ -50,26 +62,22 @@ if encrypting:
         keyxor.append(ord(string.ascii_letters[keybytes[i] % len(string.ascii_letters)]))
         key = key + chr(keyxor[i-1])
     print("The key is %s rotated by %d bits." % (key, keyrotate))
-
-    keyxor2 = []
-    for i in range(0,len(key)):
-        keyxor2.append(ord(key[i]))
-
+    print(f"keyxor {keyxor}")
     ciphertext = []
     for i in range(0, len(plaintext)):
         ciphertext.append(lrot(plaintext[i], keyrotate) ^ keyxor[i % len(keyxor)])
 
-    
+    plaintext2 = decrypt(ciphertext,key,keyrotate)
 
     with open(args.outfile, "wb") as output:
         output.write(bytes(ciphertext))
         output.close()
 else:
-    
     key = 'rORTrfA'
     keyrotate = 2
-    plaintext2 = []
-    for i in range(0, len(ciphertext)):
-        plaintext2.append(rrot((ciphertext[i] ^ keyxor[i % len(keyxor)]), keyrotate))
-    print("Decryption is not implemented!")
-    exit(1)
+    plaintext2 = decrypt(ciphertext,key,keyrotate)    
+    with open(args.outfile, "wb") as output:
+        output.write(bytes(plaintext2))
+        output.close()
+    exit(0)
+
