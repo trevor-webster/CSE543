@@ -51,18 +51,25 @@ if encrypting:
         key = key + chr(keyxor[i-1])
     print("The key is %s rotated by %d bits." % (key, keyrotate))
 
+    keyxor2 = []
+    for i in range(0,len(key)):
+        keyxor2.append(ord(key[i]))
+
     ciphertext = []
     for i in range(0, len(plaintext)):
         ciphertext.append(lrot(plaintext[i], keyrotate) ^ keyxor[i % len(keyxor)])
 
-    plaintext2 = []
-    for i in range(0, len(ciphertext)):
-        plaintext2.append(rrot((ciphertext[i] ^ keyxor[i % len(keyxor)]), keyrotate))
+    
 
     with open(args.outfile, "wb") as output:
         output.write(bytes(ciphertext))
         output.close()
 else:
     
+    key = 'rORTrfA'
+    keyrotate = 2
+    plaintext2 = []
+    for i in range(0, len(ciphertext)):
+        plaintext2.append(rrot((ciphertext[i] ^ keyxor[i % len(keyxor)]), keyrotate))
     print("Decryption is not implemented!")
     exit(1)
