@@ -44,7 +44,9 @@ def decrypt(ciphertext, key, keyrotate):
 
     for i in range(0, len(ciphertext)):
         plaintext2.append(rrot((ciphertext[i] ^ keyxor2[i % len(keyxor2)]), keyrotate))
-    print(f"Decryption {bytes(plaintext2)}")
+        
+    plaintext2 = bytes(plaintext2)
+    print(f"Decryption {plaintext2}")
     return plaintext2
 
 if encrypting:
