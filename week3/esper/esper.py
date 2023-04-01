@@ -55,9 +55,14 @@ if encrypting:
     for i in range(0, len(plaintext)):
         ciphertext.append(lrot(plaintext[i], keyrotate) ^ keyxor[i % len(keyxor)])
 
+    plaintext2 = []
+    for i in range(0, len(ciphertext)):
+        plaintext2.append(rrot((ciphertext[i] ^ keyxor[i % len(keyxor)]), keyrotate))
+
     with open(args.outfile, "wb") as output:
         output.write(bytes(ciphertext))
         output.close()
 else:
+    
     print("Decryption is not implemented!")
     exit(1)
