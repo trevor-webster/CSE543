@@ -15,16 +15,16 @@ args = parser.parse_args()
 encrypting = True
 
 try:
-    ciphertext = open(args.decrypt, "rb").read()
+    ciphertext = open(args.decrypt, "rb", encoding='utf-8').read()
     try:
-        plaintext = open(args.encrypt, "rb").read()
+        plaintext = open(args.encrypt, "rb", encoding='utf-8').read()
         print("You can't specify both -e and -d")
         exit(1)
     except Exception:
         encrypting = False
 except Exception:
     try:
-        plaintext = open(args.encrypt, "rb").read()
+        plaintext = open(args.encrypt, "rb", encoding='utf-8').read()
     except Exception:
         print("Input file error (did you specify -e or -d?)")
         exit(1)
@@ -44,8 +44,9 @@ def decrypt(ciphertext, key, keyrotate):
 
     for i in range(0, len(ciphertext)):
         plaintext2.append(rrot((ciphertext[i] ^ keyxor2[i % len(keyxor2)]), keyrotate))
-        
-    plaintext2 = bytes(plaintext2)
+
+    # plaintext2 = ''.join(map(lambda a : chr(a), plaintext2)   )
+    #plaintext2 = bytes(plaintext2, encoding='utf-8')
     print(f"Decryption {plaintext2}")
     return plaintext2
 
@@ -69,7 +70,7 @@ if encrypting:
     for i in range(0, len(plaintext)):
         ciphertext.append(lrot(plaintext[i], keyrotate) ^ keyxor[i % len(keyxor)])
 
-    plaintext2 = decrypt(ciphertext,key,keyrotate)
+    plaintext2 = bytes(decrypt(ciphertext,key,keyrotate)) 
 
     with open(args.outfile, "wb") as output:
         output.write(bytes(ciphertext))

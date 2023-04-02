@@ -9,9 +9,9 @@
             "type": "python",
             "python": "${command:python.interpreterPath}",
             "args": [
-                "--decrypt", "/app/week3/esper/ciphertext.txt",      
-                
-                "--outfile", "plaintext.txt",          
+                "--decrypt", "ciphertext.txt",      
+                "--encrypt", "/app/week3/esper/plaintext.txt",      
+                "--outfile", "ciphertext.txt",          
             ],           
             "request": "launch",
             "program": "${file}",
