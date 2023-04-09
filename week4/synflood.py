@@ -9,7 +9,7 @@ _string = ""
 
 # S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=1)
 # send(S, count=1000)
-for j in range(0,4): 
+for j in range(0,10): 
     for i in range(50,60):    
         S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=i)
         ans = sr1(S)
