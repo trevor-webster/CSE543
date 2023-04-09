@@ -17,3 +17,4 @@ for j in range(0,4):
     
 f = open('13337_seq_100.txt', 'w')
 f.write(_string)
+
