@@ -5,14 +5,15 @@ from scapy.all import *
 _port=13337
 _server="172.16.44.1"
 _payload="hello"
+_string = ""
 
+# S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=1)
+# send(S, count=1000)
 
-S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=1)
-send(S, count=1000)
-
-# for i in range(0,1000):    
-#     dport=_port
-#     S = IP( dst=_server)/TCP(dport=dport,flags='S', seq=1)
-#     ans = sr1(S)
-
-
+for i in range(0,1000):    
+    S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=i)
+    ans = sr1(S)
+    _string += (f'{ans[TCP].flags}, {ans[TCP].seq}, {ans[TCP].ack}\n')
+    
+f = open('13337_seq.txt', 'w')
+f.write(_string)
