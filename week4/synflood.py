@@ -9,11 +9,11 @@ _string = ""
 
 # S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=1)
 # send(S, count=1000)
-
-for i in range(0,200):    
-    S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=i)
-    ans = sr1(S)
-    _string += (f'{ans[TCP].flags}, {ans[TCP].seq}, {ans[TCP].ack}, {ans.time}\n')
+for j in range(0,4): 
+    for i in range(50,60):    
+        S = IP( dst=_server)/TCP(dport=_port,flags='S', seq=i)
+        ans = sr1(S)
+        _string += (f'{ans[TCP].flags}, {ans[TCP].seq}, {ans[TCP].ack}, {ans.time}\n')
     
-f = open('13337_seq.txt', 'w')
+f = open('13337_seq_50_60.txt', 'w')
 f.write(_string)
