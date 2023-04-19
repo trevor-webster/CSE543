@@ -15,6 +15,7 @@ import Cookie
 
 STORAGE = "/tmp/level05/"
 
+
 def die(str):
     print "Content-Type: text/html"
     print ""
@@ -27,7 +28,6 @@ def die(str):
   </body>
 </html>""" % str
     sys.exit(0)
-
 
 form = cgi.FieldStorage()
 

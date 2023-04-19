@@ -6,3 +6,4 @@ import tempfile
 import Cookie
 
 print "hello world"
+sys.exit(0)
