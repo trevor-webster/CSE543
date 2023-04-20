@@ -1,9 +1,5 @@
-import sys
-import cgi
-import random
-import os
-import tempfile
-import Cookie
+<?php
+echo 'hello';
+exit();
 
-print "hello world"
-sys.exit(0)
+?>
