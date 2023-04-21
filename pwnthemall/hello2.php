@@ -1,6 +1,2 @@
-<?php
- echo 'OK';
-</body>
-</html>
-?>
 
+ echo 'OK';
